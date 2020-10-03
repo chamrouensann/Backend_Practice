@@ -11,21 +11,26 @@ const url = require('url');
      if(pathName === '/' || pathName === '/overview'){
          console.log("This is in Overview");
      }
-     if(pathName === '/product'){
+     else if(pathName === '/product'){
         console.log("This is in Product");
-    }
+     }
+     else if(pathName === '/api'){
+        fs.readFile(`${__dirname}/data/data.json`, 'utf-8', (err, data) => {
+            const productData = JSON.parse(data);
+            res.writeHead(200, {'Content-type' : 'application/json'});
+            res.end(data);
+        });
+        
+
+     }
     else{
         res.writeHead(404,{
             'Content-type': 'text/html',
             'my-header': 'I love you',
         });
-        res.end('Page not found!');
+        res.end('<h1>Page not found!</h1>');
     }
    
-     console.log(req.url);
-     res.end("Hello from the server");
-     
-
  });
 
  server.listen(8000,'127.0.0.1', () => {
