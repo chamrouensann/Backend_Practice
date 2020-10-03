@@ -4,7 +4,10 @@ const url = require('url');
 
 
 
- //This is how we set up the Routing in NodeJS
+ //Mroe level of Read JSON file in NODEJS
+
+ const data = fs.readFileSync(`${__dirname}/data/data.json`, 'utf-8');
+ const dataObject = JSON.parse(data);
 
  const server = http.createServer((req, res) => {
      const pathName = req.url;
@@ -15,11 +18,8 @@ const url = require('url');
         console.log("This is in Product");
      }
      else if(pathName === '/api'){
-        fs.readFile(`${__dirname}/data/data.json`, 'utf-8', (err, data) => {
-            const productData = JSON.parse(data);
-            res.writeHead(200, {'Content-type' : 'application/json'});
-            res.end(data);
-        });
+        res.writeHead(200, {'Content-type' : 'application/json'});
+        res.end(data);
         
 
      }
