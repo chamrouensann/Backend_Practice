@@ -1,40 +1,34 @@
 const fs = require('fs');
 const http = require('http');
+const { toUnicode } = require('punycode');
 const url = require('url');
 
+//More level of Read JSON file in NODEJS
 
+const data = fs.readFileSync(`${__dirname}/data/data.json`, 'utf-8');
+const dataObject = JSON.parse(data);
 
- //Mroe level of Read JSON file in NODEJS
+const server = http.createServer((req, res) => {
+  const pathName = req.url;
+  if (pathName === '/' || pathName === '/overview') {
+    console.log('This is in Overview');
+  } else if (pathName === '/product') {
+    console.log('This is in Product');
+  } else if (pathName === '/api') {
+    res.writeHead(200, { 'Content-type': 'application/json' });
+    res.end(data);
+  } else if (pathName === '/apiif') {
+    res.writeHead(200, { 'Content-type': 'application/json' });
+    res.end(data);
+  } else {
+    res.writeHead(404, {
+      'Content-type': 'text/html',
+      'my-header': 'I love you',
+    });
+    res.end('<h1>Page not found!</h1>');
+  }
+});
 
- const data = fs.readFileSync(`${__dirname}/data/data.json`, 'utf-8');
- const dataObject = JSON.parse(data);
-
- const server = http.createServer((req, res) => {
-     const pathName = req.url;
-     if(pathName === '/' || pathName === '/overview'){
-         console.log("This is in Overview");
-     }
-     else if(pathName === '/product'){
-        console.log("This is in Product");
-     }
-     else if(pathName === '/api'){
-        res.writeHead(200, {'Content-type' : 'application/json'});
-        res.end(data);
-        
-
-     }
-    else{
-        res.writeHead(404,{
-            'Content-type': 'text/html',
-            'my-header': 'I love you',
-        });
-        res.end('<h1>Page not found!</h1>');
-    }
-   
- });
-
- server.listen(8000,'127.0.0.1', () => {
-     console.log("Listening to Port 8000");
- });
-
-  
+server.listen(8000, '127.0.0.1', () => {
+  console.log('Listening to Port 8000');
+});

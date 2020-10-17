@@ -1,0 +1,15 @@
+{
+  "name": "backend-frame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Chamrouen",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "slugify": "^1.4.5"
+  }
+}
