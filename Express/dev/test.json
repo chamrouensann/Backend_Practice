@@ -1,14 +1,11 @@
-{
-  "data": {
-    "tour": [
-      {
-        "name": "Rouen Pro",
-        "duration": 5
-      },
-      {
-        "subject": "Physic",
-        "time": 10
-      }
-    ]
+[
+  { "id": 10, "name": "Rouen Pro", "duration": 200 },
+  { "id": 99, "name": "Chamrouen", "duration": 80 },
+  { "id": 100, "name": "Bong Rouen Cute xD", "duration": 10 },
+  {
+    "id": 100,
+    "name": "Bong Rouen Cute xD",
+    "duration": 10,
+    "who": "Developer"
   }
-}
+]
