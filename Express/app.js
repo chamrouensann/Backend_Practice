@@ -15,6 +15,13 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
+app.post('/api/v1/tours/:id', (req, res) => {
+  console.log(req.params);
+  res.status(200).json({
+    status: 'Successfully',
+  });
+});
+
 app.post('/api/v1/tours', (req, res) => {
   console.log(req.body);
   const newID = tours[tours.length - 1].id + 1;
