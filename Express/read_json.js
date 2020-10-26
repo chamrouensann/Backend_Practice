@@ -32,6 +32,12 @@ app.get('/api/tours', (req, res) => {
 app.get('/api/tours/:id', (req, res) => {
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
+  if (id > tours.length) {
+    res.status(404).json({
+      status: 'Fail 404 File not found',
+      message: 'File not found',
+    });
+  }
   res.status(200).json({
     status: 'Succesfully get the API JSON file',
     data: { tour },
