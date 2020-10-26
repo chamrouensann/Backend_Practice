@@ -12,11 +12,29 @@ app.get('/', (req, res) => {
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev/test.json`));
 
-app.get('/api/json', (req, res) => {
+app.get('/api/tours', (req, res) => {
   res.status(200).json({
     status: 'Succesfully get the API JSON file',
     result: tours.length,
     data: { tours },
+  });
+});
+
+// app.get('/api/tours/:idNum', (req, res) => {
+//   console.log(req.params);
+//   res.status(200).json({
+//     status: 'Succesfully get the API JSON file',
+//     result: tours.length,
+//     data: { tours },
+//   });
+// });
+
+app.get('/api/tours/:id', (req, res) => {
+  const id = req.params.id * 1;
+  const tour = tours.find((el) => el.id === id);
+  res.status(200).json({
+    status: 'Succesfully get the API JSON file',
+    data: { tour },
   });
 });
 
